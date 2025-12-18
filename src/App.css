@@ -1,0 +1,11 @@
+main {
+  position: relative;
+  z-index: 1; /* Above shader */
+  min-height: 100vh;
+  color: white;
+}
+
+/* Optional: layout helpers */
+.section {
+  padding: 6rem 4rem;
+}

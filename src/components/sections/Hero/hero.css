@@ -1,0 +1,201 @@
+/* ROOT HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+
+  --mx: 0.5;
+  --my: 0.5;
+  --r: 0px; /* hidden by default */
+}
+
+
+/* ---------------- NAVBAR ---------------- */
+
+.nav-wrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.nav-line {
+  height: 1px;
+  width: 80%;
+  margin: 0 auto;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.9),
+    transparent
+  );
+}
+
+.nav {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
+}
+
+.nav button:hover {
+  opacity: 1;
+  background: linear-gradient(
+    120deg,
+    #00f0ff,
+    #9d00ff,
+    #ff00c8,
+    #00ff9d
+  );
+  background-size: 300%;
+  animation: technoShift 4s linear infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 8px rgba(150, 200, 255, 0.45));
+}
+
+/* ---------------- HERO CENTER ---------------- */
+
+.hero-center {
+  text-align: center;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.dsbs {
+  position: relative;
+  font-weight: 700;
+  background: white;
+  background-size: 300%;
+  animation: technoShift 6s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dsbs::after {
+  content: "dsbs";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  background-clip: text;
+  -webkit-background-clip: text;
+  filter: blur(10px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+@keyframes technoShift {
+  0% { background-position: 0%; }
+  100% { background-position: 300%; }
+}
+
+/* ---------------- CTA BUTTON ---------------- */
+
+.cta {
+  padding: 0.9rem 2.2rem;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 25px rgba(120, 200, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ---------------- IMAGE REVEAL ---------------- */
+
+.hero-image-reveal {
+  position: absolute;
+  width: min(70vmin, 620px);
+  height: min(70vmin, 620px);
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 1;
+  pointer-events: none;
+
+  background-image: var(--hero-img);
+  background-size: 110%; /* magnification */
+  background-position:
+    calc(var(--mx) * 100%)
+    calc(var(--my) * 100%);
+
+  transition: background-size 0.25s ease;
+
+  /* HARD MASK — NO BLUR */
+  -webkit-mask-image: radial-gradient(
+    circle var(--r) at
+      calc(var(--mx) * 100%)
+      calc(var(--my) * 100%),
+    white 99%,
+    transparent 100%
+  );
+
+  mask-image: radial-gradient(
+    circle var(--r) at
+      calc(var(--mx) * 100%)
+      calc(var(--my) * 100%),
+    white 99%,
+    transparent 100%
+  );
+}
+
+
+/* white ring + depth */
+.hero-image-reveal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle var(--r) at
+      calc(var(--mx) * 100%)
+      calc(var(--my) * 100%),
+    transparent calc(100% - 2px),
+    white 100%
+  );
+
+  /* POP without blur edge */
+  filter:
+    drop-shadow(0 8px 18px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.35));
+}

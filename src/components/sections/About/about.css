@@ -1,0 +1,83 @@
+.about {
+  position: relative;
+  min-height: 100vh;
+  padding: 12vh 8vw;
+  display: flex;
+  align-items: center;
+}
+
+/* soft glass layer so text stays readable over shader */
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(120, 200, 255, 0.08),
+      transparent 60%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(5, 10, 20, 0.55),
+      rgba(5, 10, 20, 0.35)
+    );
+  backdrop-filter: blur(6px);
+  z-index: 0;
+}
+
+/* content wrapper */
+.about-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+}
+
+/* section label vibe */
+.about h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e5f2ff;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* subtle underline accent */
+.about h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.6rem;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+/* body text */
+.about p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #cbd5e1;
+  max-width: 640px;
+}
+
+/* floating tech dots (very subtle) */
+.about::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    );
+  background-size: 32px 32px;
+  opacity: 0.15;
+  pointer-events: none;
+}
